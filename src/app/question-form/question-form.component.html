@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>SEB product advisor</title>
+  <link rel="stylesheet" href="question-form.component.scss">
+</head>
+<body>
+<div class="container">
+  <form>
+    <h2>Find out what we got to offer!</h2>
+  
+    <label>Select income range:</label>
+    <select name="incomeRange" [(ngModel)]="answer.incomeRange">
+      <option value="zeroIncome" ngValue="zeroIncome">0</option>
+      <option value="lowIncome" ngValue="lowIncome">1-12000</option>
+      <option value="averageIncome" ngValue="averageIncome">12001-40000</option>
+      <option value="highIncome" ngValue="highIncome">40000+</option>
+    </select>
+  
+    <label>Select age range:</label>
+    <select name="ageRange" [(ngModel)]="answer.ageRange">
+      <option value="minor" ngValue="minor">0-17</option>
+      <option value="adult" ngValue="adult">18-64</option>
+      <option value="senior" ngValue="senior">65+</option>
+    </select>
+  
+    <div>
+      <label>Are you a student?</label>
+      <div>
+        <input type="radio" name="is-student" value="true" [(ngModel)]="answer.isStudent"> Yes
+      </div>
+      <div>
+        <input type="radio" name="is-student" value="false" [(ngModel)]="answer.isStudent"> No
+      </div>
+    </div>
+  
+    <input type="submit" value="Submit" (click) = "onSubmitSend()">
+  </form>
+  <div class="products" *ngIf="recommendedProducts && recommendedProducts.length > 0" >
+    <h2>Recommended Products:</h2>
+    <ul>
+      <li *ngFor="let product of recommendedProducts">{{product}}</li>
+    </ul>
+  </div>
+</div>
+</body>
+</html>
